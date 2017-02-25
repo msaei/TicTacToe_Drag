@@ -1,0 +1,36 @@
+.cel {
+	float: left;
+	height: 100px;
+	width: 100px;
+	background: gray;
+	border: solid black 1px;
+}
+#checker {
+	height: 100px;
+	width: 100px;
+}
+#content {
+
+}
+
+img {
+	height: 100px;
+	width: 100px;
+}
+
+.row {
+	clear: both;
+}
+
+#checker.ui-draggable-dragging { border: solid 3px green; }
+
+.hovered {
+	background: red;
+}
+
+
+#gameBoard {
+	width: 400px;
+	margin-left: auto;
+	margin-right: auto;
+}

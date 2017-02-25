@@ -5,7 +5,7 @@
 	background: gray;
 	border: solid black 1px;
 }
-#checker {
+.checker {
 	height: 100px;
 	width: 100px;
 }
@@ -22,7 +22,7 @@ img {
 	clear: both;
 }
 
-#checker.ui-draggable-dragging { border: solid 3px green; }
+.checker.ui-draggable-dragging { border: solid 3px green; }
 
 .hovered {
 	background: red;

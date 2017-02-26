@@ -1,17 +1,35 @@
 var cells = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var player = 'X';
+var gameResult;
 
 $( init ); 
 
 function init() {   
 
-	cells = [0, 0, 0, 0, 0, 0, 0, 0, 0];  
+	cells = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
+	player = 'X';
+	var boardContent = '<div id="0" class="cel"></div>' +
+					'<div id="1" class="cel"></div>' +
+					'<div id="2" class="cel"></div>' +
+					'<div class="row"></div>' +
+					'<div id="3" class="cel"></div>' +
+					'<div id="4" class="cel"></div>' +
+					'<div id="5" class="cel"></div>' +
+					'<div class="row"></div>' +
+					'<div id="6" class="cel"></div>' +
+					'<div id="7" class="cel"></div>' +
+					'<div id="8" class="cel"></div>' +
+					'<div class="row"></div>' +
+					'<div class="checker"><img src="images/x.png"></div>' ;
+
+	$('#gameBoard').html(boardContent);
+	$('#messageBoard').hide();
 
 	$('.cel').droppable( {      accept: '.checker',     
 								hoverClass: 'hovered',
 								drop: droped    } );
 
-	$('.checker').draggable( {  containment: '#content',            
+	$('.checker').draggable( {  containment: '#gameBoard',            
 								cursor: 'move',      
 								revert: true    } ); 
 
@@ -41,7 +59,13 @@ function droped(event, ui) {
 			.draggable( {      containment: '#content',            
 								cursor: 'move',      
 								revert: true    } );
-		}}
+		}
+	} else {
+		var  msgContent = '<h2>' + gameResult + '</h2> ' +   
+				'<button onclick="init()">Play Again</button>';
+		$("#messageBoard").html(msgContent).show();
+
+	}
 }
 	
 
@@ -64,7 +88,8 @@ function check_board(room) {
 	// check for wining game
 	for (i = 0; i < combs.length; i++) {
 		if (Math.abs(cells[combs[i][0]] +  cells[combs[i][1]] + cells[combs[i][2]]) == 3) {	
-			alert("You won !");
+			//alert("You won !");
+			gameResult = 'player ' + player + ' wins!!!';
 			game_countinue = false ;
 			return false;
 		} 
@@ -77,7 +102,8 @@ function check_board(room) {
 	}
 	if (check != 0) {
 		// tie happened
-		alert("Tie!");
+		//alert("Tie!");
+		gameResult = "This is a Tie !!!";
 		game_countinue = false ;
 		return false;
 	}

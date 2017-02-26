@@ -9,8 +9,20 @@
 	height: 100px;
 	width: 100px;
 }
-#content {
 
+#content {
+	text-align: center;
+}
+
+#messageBoard {
+	margin-left: auto;
+	margin-right: auto;
+	width: 300px;
+	padding: 10px;
+	background: green;
+	color: white;
+	border: solid green ;
+	border-radius: 10px;
 }
 
 img {
@@ -30,7 +42,9 @@ img {
 
 
 #gameBoard {
-	width: 400px;
+	padding: 30px;
+	background: pink;
+	width: 310px;
 	margin-left: auto;
 	margin-right: auto;
 }

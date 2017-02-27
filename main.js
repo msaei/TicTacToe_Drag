@@ -8,6 +8,10 @@ function init() {
 
 	cells = [0, 0, 0, 0, 0, 0, 0, 0, 0]; 
 	player = 'X';
+
+	$('#messageBoard').hide();
+
+	// load empty cells to gameboard div
 	var boardContent = '<div id="0" class="cel"></div>' +
 					'<div id="1" class="cel"></div>' +
 					'<div id="2" class="cel"></div>' +
@@ -23,8 +27,8 @@ function init() {
 					'<div class="checker"><img src="images/x.png"></div>' ;
 
 	$('#gameBoard').html(boardContent);
-	$('#messageBoard').hide();
 
+	// activate draggable and droppable for checker and cells
 	$('.cel').droppable( {      accept: '.checker',     
 								hoverClass: 'hovered',
 								drop: droped    } );
@@ -35,14 +39,19 @@ function init() {
 
 }
 
+
+
 function droped(event, ui) {
-    
+    // deactive dropable and dragable for checker and cell that dropped to it
 	ui.draggable.draggable( 'disable' );    
-	$(this).droppable( 'disable' );        
+	$(this).droppable( 'disable' );         
 	ui.draggable.draggable( 'option', 'revert', false ); 
 	ui.draggable.hide();
+
+	//give the image of checker to dropped cell
 	$(this).html(ui.draggable.html());
-	//alert($(this).attr('id'));
+	
+	//if game continue flip the players and provide new checker for play next turn
 	if(check_board($(this).attr('id'))) {
 
 	if (player == 'X') {
@@ -60,6 +69,7 @@ function droped(event, ui) {
 								cursor: 'move',      
 								revert: true    } );
 		}
+		// if game over show proper message in message board
 	} else {
 		var  msgContent = '<h2>' + gameResult + '</h2> ' +   
 				'<button onclick="init()">Play Again</button>';
@@ -70,17 +80,7 @@ function droped(event, ui) {
 	
 
 
-function room_clicked(room) {
-
-	
-	
-	check_board();
-
-
-}
-
-
-// this function checks the games status and display winer or tie situation
+// this function checks the games status if it is over or not
 function check_board(room) {
 	cells[room] = ((player == "X") ? 1 : -1);
 	// wining combination array
@@ -88,7 +88,7 @@ function check_board(room) {
 	// check for wining game
 	for (i = 0; i < combs.length; i++) {
 		if (Math.abs(cells[combs[i][0]] +  cells[combs[i][1]] + cells[combs[i][2]]) == 3) {	
-			//alert("You won !");
+			//current player wins
 			gameResult = 'player ' + player + ' wins!!!';
 			game_countinue = false ;
 			return false;
@@ -100,9 +100,9 @@ function check_board(room) {
 	for (i = 0; i < 9; i++) {
 		check = cells[i] * check
 	}
+
 	if (check != 0) {
 		// tie happened
-		//alert("Tie!");
 		gameResult = "This is a Tie !!!";
 		game_countinue = false ;
 		return false;

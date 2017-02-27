@@ -5,13 +5,33 @@
 	background: gray;
 	border: solid black 1px;
 }
+
+.row {
+	clear: both;
+}
+
+
+img {
+	height: 100px;
+	width: 100px;
+}
 .checker {
 	height: 100px;
 	width: 100px;
 }
 
+
+
 #content {
 	text-align: center;
+}
+
+#gameBoard {
+	padding: 30px;
+	background: pink;
+	width: 310px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 #messageBoard {
@@ -25,26 +45,12 @@
 	border-radius: 10px;
 }
 
-img {
-	height: 100px;
-	width: 100px;
-}
 
-.row {
-	clear: both;
-}
 
 .checker.ui-draggable-dragging { border: solid 3px green; }
 
 .hovered {
-	background: red;
+	background: black;
 }
 
 
-#gameBoard {
-	padding: 30px;
-	background: pink;
-	width: 310px;
-	margin-left: auto;
-	margin-right: auto;
-}
